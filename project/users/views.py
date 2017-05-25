@@ -29,7 +29,7 @@ def index():
     users = User.query.all()
   else:
     users = User.query.filter(User.username.like("%%%s%%" % search)).all()
-  return render_template('users/index.html', users=users )
+  return render_template('users/index.html', users=users)
 
 @users_blueprint.route('/signup', methods=["GET", "POST"])
 def signup():
@@ -103,6 +103,8 @@ def following(id):
 @login_required
 def followers(id):
   return render_template('users/followers.html', user=User.query.get(id))  
+
+
 
 @users_blueprint.route('/<int:id>', methods =["GET", "PATCH", "DELETE"])
 def show(id):

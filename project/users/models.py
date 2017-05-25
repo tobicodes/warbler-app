@@ -1,7 +1,6 @@
 from project import db, bcrypt
 from flask_login import UserMixin
 
-
 FollowersFollowee = db.Table('follows',
                               db.Column('id',
                                         db.Integer,
@@ -48,3 +47,6 @@ class User(db.Model, UserMixin):
 
   def is_following(self, user):
     return bool(self.following.filter_by(id=user.id).first())
+
+  def find_followee_messages(self, id):
+    return Message.query.join(User, Message.user_id==User.id).join(FollowersFollowee, Message.user_id== FollowersFollowee.c.followee_id).filter(FollowersFollowee.c.follower_id==id).all()

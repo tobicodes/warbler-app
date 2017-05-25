@@ -2,7 +2,6 @@
 
 {% block content %}
 
-{% if current_user.is_authenticated %}
   <div class="row">
     <aside class="col-sm-4" id="home-aside">
       <div class="panel panel-default">
@@ -40,9 +39,7 @@
       </ul>
     </div>
   </div>
-{% else %}
 <h1>Welcome to Warbler!</h1>
 <h3>Please sign up or log in.</h3>
-{% endif %}
 
 {% endblock %}
